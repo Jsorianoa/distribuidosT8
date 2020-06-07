@@ -318,7 +318,7 @@ public class Servicio
   Connection conexion= pool.getConnection();
   try
   {
-      PreparedStatement stmt_1 = conexion.prepareStatement("DELETE FROM fotos_usuarios)");
+      PreparedStatement stmt_1 = conexion.prepareStatement("DELETE FROM fotos_usuarios");
       try
       {
         stmt_1.executeUpdate();
@@ -345,6 +345,6 @@ public class Servicio
   {
     conexion.close();
   }
-    return Response.ok().build();
+   return Response.ok().build();
   }
 }
