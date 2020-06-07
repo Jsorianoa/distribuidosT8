@@ -345,5 +345,6 @@ public class Servicio
   {
     conexion.close();
   }
+    return Response.ok().build();
   }
 }
