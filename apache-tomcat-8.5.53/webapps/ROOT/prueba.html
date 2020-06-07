@@ -142,6 +142,19 @@
                                                         alert("Error: " + JSON.stringify(result));
                                         });
                         }
+
+						function borra_usuarios()
+								{
+									var client = new WSClient("/Servicio/rest/ws");
+									client.post("borra_usuarios",{},
+								function(code,result)
+								{
+									if (code == 200)
+									alert("OK");
+									else
+									alert("Error: " + JSON.stringify(result));
+								});
+								}
 		</script>
 	</head>
 	<body>
@@ -216,10 +229,20 @@
 			<button type="button" onclick="oculta_pantalla(get('borra_usuario'))" style="width:200px">Regresa</button></br>
 		</div>
 
+
+			<div id="borra_usuarios" style="display:none">
+				<h2>Borra usuarios</h2>
+				Email *<br>
+				<button type="button" onclick="borra_usuarios()" style="width:200px">Borra</button></br>
+				<button type="button" onclick="oculta_pantalla(get('borra_usuario'))" style="width:200px">Regresa</button></br>
+			</div>
+		
+
 		<div id="menu">
 			<button type="button" onclick="muestra_pantalla(get('alta_usuario'))" style="width:200px">Alta usuario</button></br>
 			<button type="button" onclick="muestra_pantalla(get('consulta_usuario'))" style="width:200px">Consulta usuario</button></br>
 			<button type="button" onclick="muestra_pantalla(get('borra_usuario'))" style="width:200px">Borra usuaio</button></br>
+			<button type="button" onclick="muestra_pantalla(get('borra_usuarios'))" style="width:200px">Borra usuarios</button></br>
 		</div>
 	</body>
 </html>

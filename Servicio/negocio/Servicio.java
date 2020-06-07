@@ -309,47 +309,41 @@ public class Servicio
     }
     return Response.ok().build();
   }
-@POST
-  @Path("borrarTodos")
+  @POST
+  @Path("borra_usuarios")
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response borra_usuario(@FormParam("email") String email) throws Exception
+  public Response borra_usuarios() throws Exception
   {
-    Connection conexion= pool.getConnection();
-
-    try
-    {
-      PreparedStatement stmt_1 = conexion.prepareStatement("DELETE FROM fotos_usuarios WHERE id_usuario=(SELECT id_usuario FROM usuarios WHERE email=?)");
+  Connection conexion= pool.getConnection();
+  try
+  {
+      PreparedStatement stmt_1 = conexion.prepareStatement("DELETE FROM fotos_usuarios)");
       try
       {
-        stmt_1.setString(1,email);
         stmt_1.executeUpdate();
       }
       finally
       {
         stmt_1.close();
       }
-
-      PreparedStatement stmt_2 = conexion.prepareStatement("DELETE FROM usuarios WHERE email=?");
+      PreparedStatement stmt_2 = conexion.prepareStatement("DELETE FROM usuarios");
       try
       {
-        stmt_2.setString(1,email);
         stmt_2.executeUpdate();
       }
       finally
       {
         stmt_2.close();
       }
-    }
-    catch (Exception e)
-    {
-	return Response.status(400).entity(j.toJson(new Error(e.getMessage()))).build();
-    }
-    finally
-    {
-      conexion.close();
-    }
-    return Response.ok().build();
   }
-
+  catch (Exception e)
+  {
+    return Response.status(400).entity(j.toJson(new Error(e.getMessage()))).build();
+  }
+  finally
+  {
+    conexion.close();
+  }
+  }
 }
